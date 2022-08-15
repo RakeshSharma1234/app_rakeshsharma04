@@ -51,11 +51,8 @@ pipeline {
         stage('Kubernetes Deployment') {
             steps{
                  echo "Kubernetes Deployment Started ..."
-                 
-		sh '''
-		      sed -i "s/{{BRANCH}}/${env.BRANCH_NAME}/g" deployment.yml
-		      kubectl apply -f deployment.yml
-		   '''
+                    
+                 sh 'kubectl apply -f deployment.yml'
                     
                  echo "Kubernetes Deployment Finished ..."
             }
