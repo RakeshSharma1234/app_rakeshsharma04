@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Build') {
           steps {
-                echo "Build Started ... ${env.GIT_BRANCH}"
+                echo "Build Started ..."
 		
                 sh 'mvn -B -DskipTests clean install'
             
@@ -51,8 +51,11 @@ pipeline {
         stage('Kubernetes Deployment') {
             steps{
                  echo "Kubernetes Deployment Started ..."
-                    
-                 sh 'kubectl apply -f deployment.yml'
+                 
+		sh '''
+		      sed "s#{{BRANCH}}#${env.GIT_BRANCH}#g" deployment.yml
+                      kubectl apply -f deployment.yml
+		   '''
                     
                  echo "Kubernetes Deployment Finished ..."
             }
