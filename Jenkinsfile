@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
           steps {
                 echo "Build Started ..."
-		
+
                 sh 'mvn -B -DskipTests clean install'
             
                 echo "Build Finished ..."
@@ -41,7 +41,9 @@ pipeline {
                  echo "Sonarqube Analysis Started ..."
                      
                   withSonarQubeEnv('Test_Sonar') {
+
                           sh '$SonarScanner/bin/sonar-scanner  -Dsonar.java.binaries=target/classes/ -Dsonar.java.libraries=target/**/*.jar  -Dsonar.projectKey=sonar-rakeshsharma04  -Dsonar.sources=src/main/java'
+
                   }
                      
                  echo "Sonarqube Analysis Finished ..."
@@ -58,4 +60,6 @@ pipeline {
             }
         }
     }
+
 }
+
