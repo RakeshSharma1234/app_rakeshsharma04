@@ -54,7 +54,7 @@ spec:
     spec:
       containers:
        - name: devops-app-service
-         image: rs79696046/i-rakeshsharma04-master:latest
+         image: rs79696046/i-rakeshsharma04-develop:latest
          ports:
          - containerPort: 8080
          envFrom:
