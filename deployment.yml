@@ -25,7 +25,7 @@ metadata:
   name: devops-app-config
   namespace: kubernetes-cluster-rakeshsharma04
 data:
-  ENV: 'PROD'
+  Deployed_Branch: 'BRANCH_NAME'
   APP_TYPE: 'Webapp'
 
 ---
@@ -64,11 +64,11 @@ spec:
             - secretRef:
                 name: devops-app-secret
          env:
-          - name: ENV
+          - name: Deployed_Branch
             valueFrom:
               configMapKeyRef:
                 name: devops-app-config
-                key: ENV
+                key: Deployed_Branch
           - name: APP_TYPE
             valueFrom:
               configMapKeyRef:
