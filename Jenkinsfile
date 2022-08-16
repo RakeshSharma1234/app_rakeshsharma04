@@ -52,8 +52,11 @@ pipeline {
             steps{
                  echo "Kubernetes Deployment Started ..."
                     
-                 sh 'kubectl apply -f deployment.yml'
-                    
+                  sh '''
+		      sed -i -e "s#BRANCH_NAME#${env.GIT_BRANCH}#g" -e "s#PROD#DEV#g" deployment.yml
+		      kubectl apply -f deployment.yml
+		     '''
+		    
                  echo "Kubernetes Deployment Finished ..."
             }
         }
