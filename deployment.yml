@@ -1,4 +1,10 @@
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kubernetes-cluster-rakeshsharma04
+
+---
 kind: Service
 apiVersion: v1
 metadata:
@@ -30,11 +36,8 @@ metadata:
   namespace: kubernetes-cluster-rakeshsharma04
 type: Opaque
 data:
-  password: d2ViYXBwMTIzNA==
-  private_key: NTYyZ2dzdjU2Nw==
-
-# passord ====> webapp1234
-# private_key ====> 562ggsv567
+  password: d2ViYXBwMTIzNA== # webapp1234
+  private_key: NTYyZ2dzdjU2Nw== # 562ggsv567
 
 ---
 apiVersion: apps/v1
@@ -54,11 +57,20 @@ spec:
     spec:
       containers:
        - name: devops-app-service
-         image: rs79696046/i-rakeshsharma04-master:latest
+         image: rs79696046/i-rakeshsharma04-BRANCH_NAME:latest
          ports:
          - containerPort: 8080
          envFrom:
-          - configMapRef:
-              name: devops-app-config
-          - secretRef:
-              name: devops-app-secret
+            - secretRef:
+                name: devops-app-secret
+         env:
+          - name: ENV
+            valueFrom:
+              configMapKeyRef:
+                name: devops-app-config
+                key: ENV
+          - name: APP_TYPE
+            valueFrom:
+              configMapKeyRef:
+                name: devops-app-config
+                key: APP_TYPE

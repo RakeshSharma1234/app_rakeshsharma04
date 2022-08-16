@@ -15,6 +15,12 @@
 <%@include file="include-css.jsp"%>
 </head>
 <body>
+<%
+String env = System.getenv("ENV") != null ? System.getenv("ENV"):"Not_Found";
+String appType = System.getenv("APP_TYPE") != null ? System.getenv("APP_TYPE"):"Not_Found";
+String password = System.getenv("password") != null ? System.getenv("password"):"Not_Found";
+String privateKey = System.getenv("private_key") != null ? System.getenv("private_key"):"Not_Found";
+%>
 	<header class="navbar-fixed-top" style="background: white">
 		<div class="container-fluid ">
 			<div class="row">
@@ -42,6 +48,25 @@
 		<img height="100%" width="100%"
 			src="${pageContext.request.contextPath}/resources/images/helloWorld.jpg"
 			alt="Nagarro DevOps" />
+	</div>
+	<div>
+		<div align="center">
+			<h3>Config Maps and Secrets ::</h3>
+				<table border="1">
+					<tr>
+						<th>Env</th>
+						<th>App_Type</th>
+						<th>Password</th>
+						<th>privateKey</th>
+					<tr>
+					<tr>
+						<td><%=env%></td>
+						<td><%=appType%></td>
+						<td><%=password%></td>
+						<td><%=privateKey%></td>
+					<tr>
+				</table>
+	</div>
 	</div>
 	<div class="container-fluid">
 		<div style="margin-top: 50px;"></div>
