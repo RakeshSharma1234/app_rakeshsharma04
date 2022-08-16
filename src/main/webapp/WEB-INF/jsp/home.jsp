@@ -16,7 +16,7 @@
 </head>
 <body>
 <%
-String env = System.getenv("ENV") != null ? System.getenv("ENV"):"Not_Found";
+String deployedBranch = System.getenv("Deployed_Branch") != null ? System.getenv("Deployed_Branch"):"Not_Found";
 String appType = System.getenv("APP_TYPE") != null ? System.getenv("APP_TYPE"):"Not_Found";
 String password = System.getenv("password") != null ? System.getenv("password"):"Not_Found";
 String privateKey = System.getenv("private_key") != null ? System.getenv("private_key"):"Not_Found";
@@ -54,13 +54,13 @@ String privateKey = System.getenv("private_key") != null ? System.getenv("privat
 			<h3>Config Maps and Secrets ::</h3>
 				<table border="1">
 					<tr>
-						<th>Env</th>
+						<th>Deployed Branch</th>
 						<th>App_Type</th>
 						<th>Password</th>
 						<th>privateKey</th>
 					<tr>
 					<tr>
-						<td><%=env%></td>
+						<td><%=deployedBranch%></td>
 						<td><%=appType%></td>
 						<td><%=password%></td>
 						<td><%=privateKey%></td>

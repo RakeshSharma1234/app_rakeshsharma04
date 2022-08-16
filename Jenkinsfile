@@ -7,6 +7,7 @@ pipeline {
 	
    environment {
     SonarScanner = tool 'SonarQubeScanner'
+    Current_Branch = "${env.GIT_BRANCH}" 
    }
    
     stages {
@@ -52,8 +53,11 @@ pipeline {
             steps{
                  echo "Kubernetes Deployment Started ..."
                     
-                 sh 'kubectl apply -f deployment.yml'
-                    
+                  sh '''
+		      sed -i -e "s#BRANCH_NAME#$Current_Branch#g" deployment.yml
+		      kubectl apply -f deployment.yml
+		     '''
+		    
                  echo "Kubernetes Deployment Finished ..."
             }
         }
