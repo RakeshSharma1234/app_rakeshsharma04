@@ -7,7 +7,7 @@ pipeline {
 	
    environment {
     SonarScanner = tool 'SonarQubeScanner'
-    Current_Branch = "${env.GIT_BRANCH}" 
+    Current_Branch = "${env.BRANCH_NAME}" 
    }
    
     stages {
