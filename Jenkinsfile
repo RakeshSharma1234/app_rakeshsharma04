@@ -54,7 +54,7 @@ pipeline {
                  echo "Kubernetes Deployment Started ..."
                  script {
 			 if (env.BRANCH_NAME == "develop") {
-			      sleep 10
+			      sleep 30
 			 }
 			 sh '''
 			      sed -i -e "s#BRANCH_NAME#$Current_Branch#g" deployment.yml
