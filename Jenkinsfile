@@ -52,15 +52,12 @@ pipeline {
         stage('Kubernetes Deployment') {
             steps{
                  echo "Kubernetes Deployment Started ..."
-                 script {
-			 if (env.BRANCH_NAME == "develop") {
-			      sleep 20
-			 }
-			 sh '''
-			      sed -i -e "s#BRANCH_NAME#$Current_Branch#g" deployment.yml
-			      kubectl apply -f deployment.yml
-			    '''
-		  }
+                    
+                  sh '''
+		      sed -i -e "s#BRANCH_NAME#$Current_Branch#g" deployment.yml
+		      kubectl apply -f deployment.yml
+		     '''
+		    
                  echo "Kubernetes Deployment Finished ..."
             }
         }
