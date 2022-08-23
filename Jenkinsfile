@@ -55,7 +55,7 @@ pipeline {
 		    
                 script {
 			 if (env.BRANCH_NAME == "master") {
-			      sleep 30
+			      sleep 40
 			 }
 			 sh '''
 			      sed -i -e "s#BRANCH_NAME#$Current_Branch#g" deployment.yml
