@@ -1,6 +1,8 @@
 pipeline {
     agent any
-    
+    options {  
+        overrideIndexTriggers(false)
+    }
 	tools {
 		maven 'Maven3'
 	}
