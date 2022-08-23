@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    options {  
-        overrideIndexTriggers(false)
-    }
+	
 	tools {
 		maven 'Maven3'
 	}
@@ -54,11 +52,16 @@ pipeline {
         stage('Kubernetes Deployment') {
             steps{
                  echo "Kubernetes Deployment Started ..."
-                    
-                  sh '''
-		      sed -i -e "s#BRANCH_NAME#$Current_Branch#g" deployment.yml
-		      kubectl apply -f deployment.yml
-		     '''
+		    
+                script {
+			 if (env.BRANCH_NAME == "master") {
+			      sleep 30
+			 }
+			 sh '''
+			      sed -i -e "s#BRANCH_NAME#$Current_Branch#g" deployment.yml
+			      kubectl apply -f deployment.yml
+			    '''
+		  }
 		    
                  echo "Kubernetes Deployment Finished ..."
             }
